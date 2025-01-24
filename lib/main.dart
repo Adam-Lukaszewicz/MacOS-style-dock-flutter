@@ -281,7 +281,11 @@ class _DockState<T> extends State<Dock<T>> with TickerProviderStateMixin {
                             padding: _isPastHalf
                                 ? EdgeInsets.only(right: gapPadding)
                                 : EdgeInsets.only(left: gapPadding),
-                            duration: const Duration(milliseconds: 200),
+
+                            /// Similarly to the item's return animation, the "return" half of the animation is unnecessary thus skipped.
+                            duration: isHovering
+                                ? const Duration(milliseconds: 200)
+                                : Duration.zero,
                             child: Tooltip(
 
                                 /// Shows information about the item when hovered over.

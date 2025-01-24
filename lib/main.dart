@@ -272,7 +272,7 @@ class _DockState<T> extends State<Dock<T>> with TickerProviderStateMixin {
                         },
                         builder: (context, candidateData, rejectedData) {
                           final isHovering = _nextToIndex == index;
-                          final double gapPadding = isHovering ? 32.0 : 0.0;
+                          final double gapPadding = isHovering ? 50.0 : 0.0;
                           return AnimatedPadding(
                             /// Animates items moving over to make space for the dragged item.
                             ///
@@ -283,7 +283,7 @@ class _DockState<T> extends State<Dock<T>> with TickerProviderStateMixin {
                                 : EdgeInsets.only(left: gapPadding),
 
                             /// Similarly to the item's return animation, the "return" half of the animation is unnecessary thus skipped.
-                            duration: isHovering
+                            duration: _dragIndex != null
                                 ? const Duration(milliseconds: 200)
                                 : Duration.zero,
                             child: Tooltip(
